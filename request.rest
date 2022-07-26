@@ -1,0 +1,133 @@
+### KelompokBukuBesar
+GET http://localhost:5000/kelompokBukuBesars
+
+###
+GET http://localhost:5000/kelompokBukuBesarKodeNama
+
+###
+GET http://localhost:5000/kelompokBukuBesars/62dbc51946b14f308bb03a49
+
+###
+POST http://localhost:5000/kelompokBukuBesars/
+Content-Type: application/json
+
+{
+    "kode": "103",
+    "nama": "PIUTANG DAGANG",
+    "jenis": "AKTIVA"
+}
+
+###
+PATCH http://localhost:5000/kelompokBukuBesars/62dbc47d46b14f308bb03a3e
+Content-Type: application/json
+
+{
+    "kode": "101",
+    "nama": "KAS",
+    "jenis": "AKTIVA"
+}
+
+###
+DELETE http://localhost:5000/kelompokBukuBesars/62dbc47d46b14f308bb03a3e
+
+### BukuBesar
+GET http://localhost:5000/bukuBesars
+
+###
+GET http://localhost:5000/bukuBesarKodeNamaKelompok
+
+###
+GET http://localhost:5000/bukuBesars/62dbc7e1688587cb053f4665
+
+###
+POST http://localhost:5000/bukuBesars/
+Content-Type: application/json
+
+{
+    "kode": "10102",
+    "nama": "KAS KECIL (POS)",
+    "kelompok": "101",
+    "jenisSaldo": "DEBET",
+    "jenis": "KAS/BANK"
+}
+
+###
+PATCH http://localhost:5000/bukuBesars/62dbc797688587cb053f465b
+Content-Type: application/json
+
+{
+    "kode": "10101",
+    "nama": "KAS BESAR",
+    "kelompok": "101",
+    "jenis": "DEBET"
+}
+
+###
+DELETE http://localhost:5000/bukuBesars/62dbc7e1688587cb053f4665
+
+### Jurnal Umums
+GET http://localhost:5000/jurnalUmums
+
+###
+GET http://localhost:5000/jurnalUmums/62de6cbe1594aed3cdcd6b0a
+
+###
+POST http://localhost:5000/jurnalUmums/
+Content-Type: application/json
+
+{
+    "noJurnalUmum": "1",
+    "tanggal": "25-07-2022"
+}
+
+###
+PATCH http://localhost:5000/jurnalUmums/62de6cbe1594aed3cdcd6b0a
+Content-Type: application/json
+
+{
+    "totalDebet": 150000,
+    "totalKredit": 150000,
+    "balance": 0
+}
+
+###
+DELETE http://localhost:5000/jurnalUmums/62de3cade8487377d8839217
+
+### A Jurnal Umums
+GET http://localhost:5000/aJurnalUmums/1
+
+### 
+GET http://localhost:5000/aJurnalUmumForDoc
+
+###
+GET http://localhost:5000/aJurnalUmums/62df8c5147909bcb9ed0325e
+
+###
+GET http://localhost:5000/aJurnalUmumByNota/1
+
+###
+POST http://localhost:5000/aJurnalUmums/
+Content-Type: application/json
+
+{
+    "noJurnalUmum": "1",
+    "kodeAccount": "30101",
+    "keterangan": "Pendapatan",
+    "debet": 0,
+    "kredit": 100000
+}
+
+###
+PATCH http://localhost:5000/aJurnalUmums/62df393219574ede5325ac3f
+Content-Type: application/json
+
+{
+    "noJurnalUmum": "1",
+    "kodeAccount": "10101",
+    "keterangan": "Mendapat kas dari pendapatan",
+    "debet": 100000,
+    "kredit": 0
+}
+
+###
+DELETE http://localhost:5000/aJurnalUmums/62df387819574ede5325ac35
