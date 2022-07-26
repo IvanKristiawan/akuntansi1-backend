@@ -14,7 +14,7 @@ const router = express.Router();
 router.get("/aJurnalUmums/:id", getAJurnalUmums);
 router.get("/aJurnalUmumForDoc", getAJurnalUmumForDoc);
 router.get("/aJurnalUmumByNota/:id", getAJurnalUmumByNoNota);
-router.get("/aJurnalUmums/:id", getAJurnalUmumById);
+router.get("/aJurnalUmum/:id", getAJurnalUmumById);
 router.post("/aJurnalUmums", saveAJurnalUmum);
 router.patch("/aJurnalUmums/:id", updateAJurnalUmum);
 router.delete("/aJurnalUmums/:id", deleteAJurnalUmum);
