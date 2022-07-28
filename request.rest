@@ -131,3 +131,32 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/aJurnalUmums/62df387819574ede5325ac35
+
+### LaporanBukuBesar
+GET http://localhost:5000/laporanBukuBesars
+
+###
+GET http://localhost:5000/laporanBukuBesarLast/10401
+
+### 
+GET http://localhost:5000/laporanBukuBesarByKodeBuku/10401
+
+###
+GET http://localhost:5000/laporanBukuBesars/62e23da834f0c6586eebf46b
+
+###
+POST http://localhost:5000/laporanBukuBesars/
+Content-Type: application/json
+
+{
+    "kodeBukuBesar": "30101",
+    "tanggal": "27-07-2022",
+    "noJurnalUmum": "1",
+    "keterangan": "PENDAPATAN PENJUALAN KAS",
+    "debet": 0,
+    "kredit": 5000000,
+    "saldo": 5000000
+}
+
+###
+DELETE http://localhost:5000/laporanBukuBesars/62e240dc958e14c32afbefe6

@@ -5,6 +5,10 @@ const AJurnalUmumSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    idLaporanBukuBesar: {
+        type: String,
+        required: true
+    },
     tanggal: {
         type: String,
         required: true

@@ -9,6 +9,7 @@ import KelompokBukuBesarRoute from "./routes/KelompokBukuBesarRoute.js";
 import BukuBesarRoute from "./routes/BukuBesarRoute.js";
 import JurnalUmumRoute from "./routes/JurnalUmumRoute.js";
 import AJurnalUmumRoute from "./routes/AJurnalUmumRoute.js";
+import LaporanBukuBesarRoute from "./routes/LaporanBukuBesarRoute.js";
 
 const app = express();
 mongoose
@@ -23,6 +24,7 @@ app.use(KelompokBukuBesarRoute);
 app.use(BukuBesarRoute);
 app.use(JurnalUmumRoute);
 app.use(AJurnalUmumRoute);
+app.use(LaporanBukuBesarRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
