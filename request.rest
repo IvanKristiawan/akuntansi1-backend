@@ -94,7 +94,7 @@ Content-Type: application/json
 DELETE http://localhost:5000/jurnalUmums/62de3cade8487377d8839217
 
 ### A Jurnal Umums
-GET http://localhost:5000/aJurnalUmums/1
+GET http://localhost:5000/aJurnalUmums/0002
 
 ### 
 GET http://localhost:5000/aJurnalUmumForDoc
@@ -160,3 +160,44 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/laporanBukuBesars/62e240dc958e14c32afbefe6
+
+### Neraca Saldo
+GET http://localhost:5000/neracaSaldos
+
+###
+GET http://localhost:5000/neracaSaldos/62e3bbbf50f9184634e5b139
+
+### 
+GET http://localhost:5000/neracaSaldoForDoc
+
+###
+GET http://localhost:5000/neracaSaldoLast/10301
+
+###
+POST http://localhost:5000/neracaSaldos/
+Content-Type: application/json
+
+{
+    "kodeAccount": "30101",
+    "jenisAccount": "KREDIT",
+    "namaAccount": "PENJUALAN RETAIL",
+    "tanggal": "27-07-2022",
+    "debet": 0,
+    "kredit": 0
+}
+
+###
+PATCH http://localhost:5000/neracaSaldos/62e3bbbf50f9184634e5b139
+Content-Type: application/json
+
+{
+    "kodeAccount": "10101",
+    "jenisAccount": "KREDIT",
+    "namaAccount": "KAS BESAR",
+    "tanggal": "27-07-2022",
+    "debet": 0,
+    "kredit": 0
+}
+
+###
+DELETE http://localhost:5000/neracaSaldos/62e38b98ad6cbebda62105ad

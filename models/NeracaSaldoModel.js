@@ -1,19 +1,11 @@
 import mongoose from "mongoose";
 
-const AJurnalUmumSchema = new mongoose.Schema({
-    noJurnalUmum: {
-        type: String,
-        required: true
-    },
-    idNeracaSaldo: {
-        type: String,
-        required: true
-    },
-    idLaporanBukuBesar: {
-        type: String,
-        required: true
-    },
+const NeracaSaldoSchema = new mongoose.Schema({
     tanggal: {
+        type: String,
+        required: true
+    },
+    jenisAccount: {
         type: String,
         required: true
     },
@@ -25,9 +17,6 @@ const AJurnalUmumSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    keterangan: {
-        type: String
-    },
     debet: {
         type: Number
     },
@@ -36,4 +25,4 @@ const AJurnalUmumSchema = new mongoose.Schema({
     }
 })
 
-export default mongoose.model('AJurnalUmum', AJurnalUmumSchema)
+export default mongoose.model('NeracaSaldo', NeracaSaldoSchema)

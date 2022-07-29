@@ -12,7 +12,7 @@ export const getBukuBesars = async (req, res) => {
 
 export const getBukuBesarKodeNamaKelompok = async (req, res) => {
   try {
-    const bukuBesar = await BukuBesar.find({}, {kode: 1, nama: 1, kelompok: 1, _id: 0});
+    const bukuBesar = await BukuBesar.find({}, {kode: 1, nama: 1, kelompok: 1, jenisSaldo: 1, _id: 0});
     res.json(bukuBesar);
   } catch (error) {
     // Error 500 = Kesalahan di server
