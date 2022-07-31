@@ -20,11 +20,52 @@ export const getLabaRugiLast = async (req, res) => {
   }
 };
 
+export const getLabaRugiTotal = async (req, res) => {
+  try {
+    const labaRugi = await LabaRugi.find(
+      {},
+      {
+        totalPendapatan: 1,
+        totalHPP: 1,
+        totalBebanOperasional: 1,
+        labaKotor: 1,
+        labaBersih: 1,
+        _id: 0,
+      }
+    )
+      .sort({ createdAt: -1 })
+      .limit(1);
+    res.json(labaRugi);
+  } catch (error) {
+    // Error 500 = Kesalahan di server
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const getLabaRugiTransaksiAll = async (req, res) => {
   try {
     const labaRugi = await LabaRugi.find({}).sort({ createdAt: -1 }).limit(1);
     const transaksi = labaRugi[0].transaksi;
     res.json(transaksi);
+  } catch (error) {
+    // Error 500 = Kesalahan di server
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getLabaRugiTransaksiAllForDoc = async (req, res) => {
+  try {
+    const labaRugi = await LabaRugi.find({}).sort({ createdAt: -1 }).limit(1);
+    const transaksi = labaRugi[0].transaksi;
+    let tempTransaksi = [];
+    transaksi.map((val) => {
+      tempTransaksi.push({
+        kodeAccount: val.kodeAccount,
+        namaAccount: val.namaAccount,
+        total: val.total,
+      });
+    });
+    res.json(tempTransaksi);
   } catch (error) {
     // Error 500 = Kesalahan di server
     res.status(500).json({ message: error.message });

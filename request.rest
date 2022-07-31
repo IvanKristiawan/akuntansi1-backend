@@ -210,10 +210,16 @@ GET http://localhost:5000/labaRugis
 GET http://localhost:5000/labaRugis/62e48a1153498c0e99a4e838
 
 ###
+GET http://localhost:5000/labaRugiTotal
+
+###
 GET http://localhost:5000/labaRugiLast
 
 ###
 GET http://localhost:5000/labaRugiTransaksiAll
+
+###
+GET http://localhost:5000/labaRugiTransaksiAllForDoc
 
 ###
 GET http://localhost:5000/labaRugiTransaksi/30101

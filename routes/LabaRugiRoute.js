@@ -3,7 +3,9 @@ import {
     getLabaRugis,
     getLabaRugiById,
     getLabaRugiLast,
+    getLabaRugiTotal,
     getLabaRugiTransaksiAll,
+    getLabaRugiTransaksiAllForDoc,
     getLabaRugiTransaksi,
     getLabaRugiTransaksiOther,
     saveLabaRugi,
@@ -15,8 +17,10 @@ const router = express.Router();
 
 router.get("/labaRugis", getLabaRugis);
 router.get("/labaRugis/:id", getLabaRugiById);
+router.get("/labaRugiTotal", getLabaRugiTotal);
 router.get("/labaRugiLast", getLabaRugiLast);
 router.get("/labaRugiTransaksiAll", getLabaRugiTransaksiAll);
+router.get("/labaRugiTransaksiAllForDoc", getLabaRugiTransaksiAllForDoc);
 router.get("/labaRugiTransaksi/:id", getLabaRugiTransaksi);
 router.get("/labaRugiTransaksiOther/:id", getLabaRugiTransaksiOther);
 router.post("/labaRugis", saveLabaRugi);
