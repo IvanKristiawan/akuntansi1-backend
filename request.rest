@@ -298,3 +298,32 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/labaRugis/62e5129699bb09b59d639a2b
+
+### Perubahan Modal
+GET http://localhost:5000/perubahanModals
+
+### 
+GET http://localhost:5000/perubahanModalLast
+
+###
+POST http://localhost:5000/perubahanModals/
+Content-Type: application/json
+
+{
+    "modalSaham": 0,
+    "labaBersih": 0,
+    "total": 0
+}
+
+###
+PATCH http://localhost:5000/perubahanModals/62e626bbd988055e1d3c2b17
+Content-Type: application/json
+
+{
+    "modalSaham": 0,
+    "labaBersih": 0,
+    "total": 0
+}
+
+###
+DELETE http://localhost:5000/perubahanModals/62e6268ad988055e1d3c2b0f
