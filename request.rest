@@ -94,7 +94,7 @@ Content-Type: application/json
 DELETE http://localhost:5000/jurnalUmums/62de3cade8487377d8839217
 
 ### A Jurnal Umums
-GET http://localhost:5000/aJurnalUmums/0002
+GET http://localhost:5000/aJurnalUmums/0005
 
 ### 
 GET http://localhost:5000/aJurnalUmumForDoc
@@ -159,19 +159,19 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/laporanBukuBesars/62e240dc958e14c32afbefe6
+DELETE http://localhost:5000/laporanBukuBesars/62e50b7599bb09b59d639974
 
 ### Neraca Saldo
 GET http://localhost:5000/neracaSaldos
 
 ###
-GET http://localhost:5000/neracaSaldos/62e3bbbf50f9184634e5b139
+GET http://localhost:5000/neracaSaldos/62e5cae31283839bccf2db7a
 
 ### 
 GET http://localhost:5000/neracaSaldoForDoc
 
 ###
-GET http://localhost:5000/neracaSaldoLast/10301
+GET http://localhost:5000/neracaSaldoLast/31001
 
 ###
 POST http://localhost:5000/neracaSaldos/
@@ -187,17 +187,108 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:5000/neracaSaldos/62e3bbbf50f9184634e5b139
+PATCH http://localhost:5000/neracaSaldos/62e5cacd1283839bccf2db67
 Content-Type: application/json
 
 {
+    "_id": "62e5cacd1283839bccf2db67",
+    "tanggal": "26-07-2022",
+    "jenisAccount": "DEBET",
     "kodeAccount": "10101",
-    "jenisAccount": "KREDIT",
-    "namaAccount": "KAS BESAR",
-    "tanggal": "27-07-2022",
-    "debet": 0,
+    "namaAccount": " KAS BESAR",
+    "debet": 100000000,
     "kredit": 0
 }
 
 ###
-DELETE http://localhost:5000/neracaSaldos/62e38b98ad6cbebda62105ad
+DELETE http://localhost:5000/neracaSaldos/62e5d1ed1283839bccf2dd4f
+
+### Laba Rugi
+GET http://localhost:5000/labaRugis
+
+###
+GET http://localhost:5000/labaRugis/62e48a1153498c0e99a4e838
+
+###
+GET http://localhost:5000/labaRugiLast
+
+###
+GET http://localhost:5000/labaRugiTransaksiAll
+
+###
+GET http://localhost:5000/labaRugiTransaksi/30101
+
+###
+GET http://localhost:5000/labaRugiTransaksiOther/30101
+
+###
+POST http://localhost:5000/labaRugis/
+Content-Type: application/json
+
+{
+    "tanggal": "28-07-2022",
+    "transaksi": [
+        {
+            "idNeracaSaldo": "62e3c28a50f9184634e5b2ad",
+            "kodeAccount": "30101",
+            "kelompokAccount": "301",
+            "namaAccount": "PENJUALAN RETAIL",
+            "total": 5000000
+        },
+        {
+            "idNeracaSaldo": "62e3c2ad50f9184634e5b2c6",
+            "kodeAccount": "30401",
+            "kelompokAccount": "304",
+            "namaAccount": "HPP PENJUALAN RETAIL",
+            "total": 3000000
+        }
+    ],
+    "totalPendapatan": 5000000,
+    "totalHPP": 3000000,
+    "totalBebanOperasional": 0,
+    "labaKotor": 2000000,
+    "labaBersih": 2000000
+}
+
+###
+PATCH http://localhost:5000/labaRugis/62e5139999bb09b59d639a4d
+Content-Type: application/json
+
+{
+    "_id": "62e5139999bb09b59d639a4d",
+    "tanggal": "28-07-2022",
+    "totalPendapatan": 5000000,
+    "totalHPP": 2000000,
+    "totalBebanOperasional": 0,
+    "labaKotor": 3000000,
+    "labaBersih": 3000000,
+    "transaksi": [
+      {
+        "idNeracaSaldo": "62e5d2761283839bccf2dd84",
+        "kodeAccount": "30101",
+        "namaAccount": " PENJUALAN RETAIL",
+        "kelompokAccount": "301",
+        "total": 5000000,
+        "_id": "62e5d2771283839bccf2dd86"
+      },
+      {
+        "idNeracaSaldo": "62e5d2d41283839bccf2ddb5",
+        "kodeAccount": "30401",
+        "namaAccount": " HPP PENJUALAN RETAIL",
+        "kelompokAccount": "304",
+        "total": 2000000,
+        "_id": "62e5d2d51283839bccf2ddb8"
+      },
+      {
+        "idNeracaSaldo": "62e5d3661283839bccf2ddf7",
+        "kodeAccount": "31001",
+        "namaAccount": " BIAYA GAJI",
+        "kelompokAccount": "310",
+        "total": 0,
+        "_id": "62e5dd711283839bccf2de32"
+      }
+    ]
+}
+
+###
+DELETE http://localhost:5000/labaRugis/62e5129699bb09b59d639a2b

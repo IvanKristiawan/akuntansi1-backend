@@ -15,7 +15,6 @@ export const getNeracaSaldoForDoc = async (req, res) => {
     const neracaSaldo = await NeracaSaldo.find(
       {},
       {
-        tanggal: 1,
         kodeAccount: 1,
         namaAccount: 1,
         debet: 1,

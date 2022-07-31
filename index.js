@@ -11,6 +11,7 @@ import JurnalUmumRoute from "./routes/JurnalUmumRoute.js";
 import AJurnalUmumRoute from "./routes/AJurnalUmumRoute.js";
 import LaporanBukuBesarRoute from "./routes/LaporanBukuBesarRoute.js";
 import NeracaSaldoRoute from "./routes/NeracaSaldoRoute.js";
+import LabaRugiRoute from "./routes/LabaRugiRoute.js";
 
 const app = express();
 mongoose
@@ -27,6 +28,7 @@ app.use(JurnalUmumRoute);
 app.use(AJurnalUmumRoute);
 app.use(LaporanBukuBesarRoute);
 app.use(NeracaSaldoRoute);
+app.use(LabaRugiRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
