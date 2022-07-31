@@ -327,3 +327,156 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/perubahanModals/62e6268ad988055e1d3c2b0f
+
+### Harta
+GET http://localhost:5000/hartas
+
+###
+GET http://localhost:5000/hartaLast
+
+###
+GET http://localhost:5000/hartaLancarAll
+
+###
+GET http://localhost:5000/hartaLancar/10101
+
+###
+GET http://localhost:5000/hartaLancarOther/10101
+
+###
+GET http://localhost:5000/hartaTetapAll
+
+###
+GET http://localhost:5000/hartaTetap/12001
+
+###
+GET http://localhost:5000/hartaTetapOther/12001
+
+###
+POST http://localhost:5000/hartas/
+Content-Type: application/json
+
+{
+    "hartaLancar": [
+        {
+            "kodeAccount": "10101",
+            "namaAccount": "KAS BESAR",
+            "kelompokAccount": "101",
+            "total": 1000000
+        },
+        {
+            "kodeAccount": "10301",
+            "namaAccount": "PIUTANG DAGANG",
+            "kelompokAccount": "103",
+            "total": 1000000
+        }
+    ],
+    "hartaTetap": [
+        {
+            "kodeAccount": "12001",
+            "namaAccount": "TANAH DAN BANGUNAN",
+            "kelompokAccount": "120",
+            "total": 1000000
+        },
+        {
+            "kodeAccount": "12002",
+            "namaAccount": "KENDARAAN",
+            "kelompokAccount": "120",
+            "total": 1000000
+        }
+    ],
+    "totalHartaLancar": 2000000,
+    "totalHartaTetap": 2000000,
+    "totalHarta": 4000000
+}
+
+###
+PATCH http://localhost:5000/hartas/62e66b8d9c78b2c24f0f7414
+Content-Type: application/json
+
+{
+    "hartaLancar": [
+        {
+            "kodeAccount": "10101",
+            "namaAccount": "KAS BESAR",
+            "kelompokAccount": "101",
+            "total": 1000000
+        },
+        {
+            "kodeAccount": "10301",
+            "namaAccount": "PIUTANG DAGANG",
+            "kelompokAccount": "103",
+            "total": 1000000
+        }
+    ],
+    "hartaTetap": [
+        {
+            "kodeAccount": "12001",
+            "namaAccount": "TANAH DAN BANGUNAN",
+            "kelompokAccount": "120",
+            "total": 1000000
+        },
+        {
+            "kodeAccount": "12002",
+            "namaAccount": "KENDARAAN",
+            "kelompokAccount": "120",
+            "total": 1000000
+        }
+    ],
+    "totalHartaLancar": 2000000,
+    "totalHartaTetap": 2000000,
+    "totalHarta": 4000000
+}
+
+###
+DELETE http://localhost:5000/hartas/62e66b0c9c78b2c24f0f73fb
+
+### Kewajiban
+GET http://localhost:5000/kewajibans
+
+###
+GET http://localhost:5000/kewajibanLast
+
+###
+GET http://localhost:5000/kewajibanAll
+
+###
+GET http://localhost:5000/kewajiban/20101
+
+###
+GET http://localhost:5000/kewajibanOther/20101
+
+###
+POST http://localhost:5000/kewajibans/
+Content-Type: application/json
+
+{
+    "kewajiban": [
+        {
+            "kodeAccount": "20101",
+            "namaAccount": "HUTANG DAGANG",
+            "kelompokAccount": "201",
+            "total": 1000000
+        }
+    ],
+    "totalKewajiban": 1000000
+}
+
+###
+PATCH http://localhost:5000/kewajibans/62e66efa42c5317b501dd049
+Content-Type: application/json
+
+{
+    "kewajiban": [
+        {
+            "kodeAccount": "20101",
+            "namaAccount": "HUTANG DAGANG",
+            "kelompokAccount": "201",
+            "total": 1000000
+        }
+    ],
+    "totalKewajiban": 1000000
+}
+
+###
+DELETE http://localhost:5000/kewajibans/62e66ec842c5317b501dd039

@@ -13,6 +13,8 @@ import LaporanBukuBesarRoute from "./routes/LaporanBukuBesarRoute.js";
 import NeracaSaldoRoute from "./routes/NeracaSaldoRoute.js";
 import LabaRugiRoute from "./routes/LabaRugiRoute.js";
 import PerubahanModalRoute from "./routes/PerubahanModalRoute.js";
+import HartaRoute from "./routes/HartaRoute.js";
+import KewajibanRoute from "./routes/KewajibanRoute.js";
 
 const app = express();
 mongoose
@@ -31,6 +33,8 @@ app.use(LaporanBukuBesarRoute);
 app.use(NeracaSaldoRoute);
 app.use(LabaRugiRoute);
 app.use(PerubahanModalRoute);
+app.use(HartaRoute);
+app.use(KewajibanRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
