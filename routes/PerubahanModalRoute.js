@@ -1,6 +1,7 @@
 import express from "express";
 import {
-    getPerubahanModal,
+    getPerubahanModals,
+    getPerubahanModalForDoc,
     getPerubahanModalLast,
     savePerubahanModal,
     updatePerubahanModal,
@@ -9,7 +10,8 @@ import {
 
 const router = express.Router();
 
-router.get("/perubahanModals", getPerubahanModal);
+router.get("/perubahanModals", getPerubahanModals);
+router.get("/perubahanModalForDoc", getPerubahanModalForDoc);
 router.get("/perubahanModalLast", getPerubahanModalLast);
 router.post("/perubahanModals", savePerubahanModal);
 router.patch("/perubahanModals/:id", updatePerubahanModal);

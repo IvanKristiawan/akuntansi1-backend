@@ -305,6 +305,9 @@ GET http://localhost:5000/perubahanModals
 ### 
 GET http://localhost:5000/perubahanModalLast
 
+### 
+GET http://localhost:5000/perubahanModalForDoc
+
 ###
 POST http://localhost:5000/perubahanModals/
 Content-Type: application/json
@@ -326,7 +329,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/perubahanModals/62e6268ad988055e1d3c2b0f
+DELETE http://localhost:5000/perubahanModals/62e62fe2d988055e1d3c2bc2
 
 ### Harta
 GET http://localhost:5000/hartas
@@ -480,3 +483,34 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/kewajibans/62e66ec842c5317b501dd039
+
+### Neraca
+GET http://localhost:5000/neracas
+
+### 
+GET http://localhost:5000/neracaLast
+
+###
+POST http://localhost:5000/neracas/
+Content-Type: application/json
+
+{
+    "idHarta": "62e66b8d9c78b2c24f0f7414",
+    "idKewajiban": "62e66efa42c5317b501dd049",
+    "idModal": "62e626bbd988055e1d3c2b17",
+    "total": 0
+}
+
+###
+PATCH http://localhost:5000/neracas/62e71bc1e259526c8526b98a
+Content-Type: application/json
+
+{
+    "idHarta": "62e66b8d9c78b2c24f0f7414",
+    "idKewajiban": "62e66efa42c5317b501dd049",
+    "idModal": "62e626bbd988055e1d3c2b17",
+    "total": 0
+}
+
+###
+DELETE http://localhost:5000/neracas/62e71bc1e259526c8526b98a

@@ -1,8 +1,26 @@
 import PerubahanModal from "../models/PerubahanModalModel.js";
 
-export const getPerubahanModal = async (req, res) => {
+export const getPerubahanModals = async (req, res) => {
   try {
     const perubahanModal = await PerubahanModal.find({});
+    res.json(perubahanModal);
+  } catch (error) {
+    // Error 500 = Kesalahan di server
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getPerubahanModalForDoc = async (req, res) => {
+  try {
+    const perubahanModal = await PerubahanModal.find(
+      {},
+      {
+        modalSaham: 1,
+        labaBersih: 1,
+        total: 1,
+        _id: 0,
+      }
+    );
     res.json(perubahanModal);
   } catch (error) {
     // Error 500 = Kesalahan di server

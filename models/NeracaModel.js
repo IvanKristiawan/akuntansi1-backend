@@ -1,17 +1,14 @@
 import mongoose from "mongoose";
 
 const NeracaSchema = new mongoose.Schema({
-    harta: {
-        type: Schema.Types.ObjectId,
-        ref: "Harta"
+    idHarta: {
+        type: String
     },
-    kewajiban: {
-        type: Schema.Types.ObjectId,
-        ref: "Kewajiban"
+    idKewajiban: {
+        type: String
     },
-    modal: {
-        type: Schema.Types.ObjectId,
-        ref: "PerubahanModal"
+    idModal: {
+        type: String
     },
     total: {
         type: Number,
