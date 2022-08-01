@@ -103,7 +103,7 @@ GET http://localhost:5000/aJurnalUmumForDoc
 GET http://localhost:5000/aJurnalUmum/62df8c5147909bcb9ed0325e
 
 ###
-GET http://localhost:5000/aJurnalUmumByNota/1
+GET http://localhost:5000/aJurnalUmumByNota/0001
 
 ###
 POST http://localhost:5000/aJurnalUmums/

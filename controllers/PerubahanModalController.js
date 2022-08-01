@@ -12,6 +12,7 @@ export const getPerubahanModals = async (req, res) => {
 
 export const getPerubahanModalForDoc = async (req, res) => {
   try {
+    let tempPerubahanModal = []
     const perubahanModal = await PerubahanModal.find(
       {},
       {
@@ -21,7 +22,14 @@ export const getPerubahanModalForDoc = async (req, res) => {
         _id: 0,
       }
     );
-    res.json(perubahanModal);
+    perubahanModal.map(val => {
+      tempPerubahanModal.push({
+        modalSaham: val.modalSaham.toLocaleString(),
+        labaBersih: val.labaBersih.toLocaleString(),
+        total: val.total.toLocaleString(),
+      })
+    })
+    res.json(tempPerubahanModal);
   } catch (error) {
     // Error 500 = Kesalahan di server
     res.status(500).json({ message: error.message });

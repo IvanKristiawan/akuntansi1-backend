@@ -12,6 +12,7 @@ export const getNeracaSaldos = async (req, res) => {
 
 export const getNeracaSaldoForDoc = async (req, res) => {
   try {
+    let tempNeracaSaldo = []
     const neracaSaldo = await NeracaSaldo.find(
       {},
       {
@@ -22,7 +23,15 @@ export const getNeracaSaldoForDoc = async (req, res) => {
         _id: 0,
       }
     );
-    res.json(neracaSaldo);
+    neracaSaldo.map(val => {
+      tempNeracaSaldo.push({
+        kodeAccount: val.kodeAccount,
+        namaAccount: val.namaAccount,
+        debet: val.debet.toLocaleString(),
+        kredit: val.kredit.toLocaleString(),
+      })
+    })
+    res.json(tempNeracaSaldo);
   } catch (error) {
     // Error 500 = Kesalahan di server
     res.status(500).json({ message: error.message });

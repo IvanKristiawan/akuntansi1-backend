@@ -22,6 +22,7 @@ export const getLabaRugiLast = async (req, res) => {
 
 export const getLabaRugiTotal = async (req, res) => {
   try {
+    let tempLabaRugi = []
     const labaRugi = await LabaRugi.find(
       {},
       {
@@ -35,7 +36,16 @@ export const getLabaRugiTotal = async (req, res) => {
     )
       .sort({ createdAt: -1 })
       .limit(1);
-    res.json(labaRugi);
+    labaRugi.map(val => {
+      tempLabaRugi.push({
+        totalPendapatan: val.totalPendapatan.toLocaleString(),
+        totalHPP: val.totalHPP.toLocaleString(),
+        totalBebanOperasional: val.totalBebanOperasional.toLocaleString(),
+        labaKotor: val.labaKotor.toLocaleString(),
+        labaBersih: val.labaBersih.toLocaleString(),
+      })
+    })
+    res.json(tempLabaRugi);
   } catch (error) {
     // Error 500 = Kesalahan di server
     res.status(500).json({ message: error.message });
@@ -44,9 +54,19 @@ export const getLabaRugiTotal = async (req, res) => {
 
 export const getLabaRugiTransaksiAll = async (req, res) => {
   try {
+    let tempTransaksi = []
     const labaRugi = await LabaRugi.find({}).sort({ createdAt: -1 }).limit(1);
     const transaksi = labaRugi[0].transaksi;
-    res.json(transaksi);
+    transaksi.map(val => {
+      tempTransaksi.push({
+        idNeracaSaldo: val.idNeracaSaldo,
+        kodeAccount: val.kodeAccount,
+        namaAccount: val.namaAccount,
+        kelompokAccount: val.kelompokAccount,
+        total: val.total.toLocaleString(),
+      })
+    })
+    res.json(tempTransaksi);
   } catch (error) {
     // Error 500 = Kesalahan di server
     res.status(500).json({ message: error.message });
@@ -62,7 +82,7 @@ export const getLabaRugiTransaksiAllForDoc = async (req, res) => {
       tempTransaksi.push({
         kodeAccount: val.kodeAccount,
         namaAccount: val.namaAccount,
-        total: val.total,
+        total: val.total.toLocaleString(),
       });
     });
     res.json(tempTransaksi);
