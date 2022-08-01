@@ -94,7 +94,7 @@ Content-Type: application/json
 DELETE http://localhost:5000/jurnalUmums/62de3cade8487377d8839217
 
 ### A Jurnal Umums
-GET http://localhost:5000/aJurnalUmums/0005
+GET http://localhost:5000/aJurnalUmums/0002
 
 ### 
 GET http://localhost:5000/aJurnalUmumForDoc
@@ -130,7 +130,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/aJurnalUmums/62df387819574ede5325ac35
+DELETE http://localhost:5000/aJurnalUmums/62e65709d988055e1d3c2d73
 
 ### LaporanBukuBesar
 GET http://localhost:5000/laporanBukuBesars
@@ -159,7 +159,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/laporanBukuBesars/62e50b7599bb09b59d639974
+DELETE http://localhost:5000/laporanBukuBesars/62e65709d988055e1d3c2d71
 
 ### Neraca Saldo
 GET http://localhost:5000/neracaSaldos
@@ -201,7 +201,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/neracaSaldos/62e5d1ed1283839bccf2dd4f
+DELETE http://localhost:5000/neracaSaldos/62e5ce3d1283839bccf2dc54
 
 ### Laba Rugi
 GET http://localhost:5000/labaRugis
@@ -334,6 +334,9 @@ DELETE http://localhost:5000/perubahanModals/62e62fe2d988055e1d3c2bc2
 ### Harta
 GET http://localhost:5000/hartas
 
+### 
+GET http://localhost:5000/hartas/62e66b8d9c78b2c24f0f7414
+
 ###
 GET http://localhost:5000/hartaLast
 
@@ -341,7 +344,7 @@ GET http://localhost:5000/hartaLast
 GET http://localhost:5000/hartaLancarAll
 
 ###
-GET http://localhost:5000/hartaLancar/10101
+GET http://localhost:5000/hartaLancar/10401
 
 ###
 GET http://localhost:5000/hartaLancarOther/10101
@@ -350,10 +353,10 @@ GET http://localhost:5000/hartaLancarOther/10101
 GET http://localhost:5000/hartaTetapAll
 
 ###
-GET http://localhost:5000/hartaTetap/12001
+GET http://localhost:5000/hartaTetap/101011
 
 ###
-GET http://localhost:5000/hartaTetapOther/12001
+GET http://localhost:5000/hartaTetapOther/10101
 
 ###
 POST http://localhost:5000/hartas/
@@ -403,13 +406,7 @@ Content-Type: application/json
             "kodeAccount": "10101",
             "namaAccount": "KAS BESAR",
             "kelompokAccount": "101",
-            "total": 1000000
-        },
-        {
-            "kodeAccount": "10301",
-            "namaAccount": "PIUTANG DAGANG",
-            "kelompokAccount": "103",
-            "total": 1000000
+            "total": 0
         }
     ],
     "hartaTetap": [
@@ -417,18 +414,12 @@ Content-Type: application/json
             "kodeAccount": "12001",
             "namaAccount": "TANAH DAN BANGUNAN",
             "kelompokAccount": "120",
-            "total": 1000000
-        },
-        {
-            "kodeAccount": "12002",
-            "namaAccount": "KENDARAAN",
-            "kelompokAccount": "120",
-            "total": 1000000
+            "total": 0
         }
     ],
-    "totalHartaLancar": 2000000,
-    "totalHartaTetap": 2000000,
-    "totalHarta": 4000000
+    "totalHartaLancar": 0,
+    "totalHartaTetap": 0,
+    "totalHarta": 0
 }
 
 ###
@@ -475,10 +466,10 @@ Content-Type: application/json
             "kodeAccount": "20101",
             "namaAccount": "HUTANG DAGANG",
             "kelompokAccount": "201",
-            "total": 1000000
+            "total": 0
         }
     ],
-    "totalKewajiban": 1000000
+    "totalKewajiban": 0
 }
 
 ###
@@ -497,20 +488,18 @@ Content-Type: application/json
 {
     "idHarta": "62e66b8d9c78b2c24f0f7414",
     "idKewajiban": "62e66efa42c5317b501dd049",
-    "idModal": "62e626bbd988055e1d3c2b17",
-    "total": 0
+    "idModal": "62e626bbd988055e1d3c2b17"
 }
 
 ###
-PATCH http://localhost:5000/neracas/62e71bc1e259526c8526b98a
+PATCH http://localhost:5000/neracas/62e71bdde259526c8526b991
 Content-Type: application/json
 
 {
     "idHarta": "62e66b8d9c78b2c24f0f7414",
     "idKewajiban": "62e66efa42c5317b501dd049",
-    "idModal": "62e626bbd988055e1d3c2b17",
-    "total": 0
+    "idModal": "62e626bbd988055e1d3c2b17"
 }
 
 ###
-DELETE http://localhost:5000/neracas/62e71bc1e259526c8526b98a
+DELETE http://localhost:5000/neracas/62e71bdde259526c8526b991

@@ -1,6 +1,7 @@
 import express from "express";
 import {
     getHartas,
+    getHartaById,
     getHartaLast,
     getHartaLancarAll,
     getHartaLancar,
@@ -16,6 +17,7 @@ import {
 const router = express.Router();
 
 router.get("/hartas", getHartas);
+router.get("/hartas/:id", getHartaById);
 router.get("/hartaLast", getHartaLast);
 router.get("/hartaLancarAll", getHartaLancarAll);
 router.get("/hartaLancar/:id", getHartaLancar);

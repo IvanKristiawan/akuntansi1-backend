@@ -10,6 +10,16 @@ export const getHartas = async (req, res) => {
   }
 };
 
+export const getHartaById = async (req, res) => {
+  try {
+    const harta = await Harta.findById(req.params.id);
+    res.json(harta);
+  } catch (error) {
+    // Error 404 = Not Found
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const getHartaLast = async (req, res) => {
   try {
     const harta = await Harta.find({}).sort({ createdAt: -1 }).limit(1);

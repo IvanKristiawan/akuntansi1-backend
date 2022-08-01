@@ -9,10 +9,6 @@ const NeracaSchema = new mongoose.Schema({
     },
     idModal: {
         type: String
-    },
-    total: {
-        type: Number,
-        default: 0
     }
 })
 
