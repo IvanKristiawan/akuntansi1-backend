@@ -22,9 +22,18 @@ export const getKewajibanLast = async (req, res) => {
 
 export const getKewajibanAll = async (req, res) => {
   try {
+    let tempKewajiban = [];
     const kewajiban = await Kewajiban.find({}).sort({ createdAt: -1 }).limit(1);
     const kewajibanAll = kewajiban[0].kewajiban;
-    res.json(kewajibanAll);
+    kewajibanAll.map((val) => {
+      tempKewajiban.push({
+        kodeAccount: val.kodeAccount,
+        namaAccount: val.namaAccount,
+        kelompokAccount: val.kelompokAccount,
+        total: val.total.toLocaleString(),
+      });
+    });
+    res.json(tempKewajiban);
   } catch (error) {
     // Error 500 = Kesalahan di server
     res.status(500).json({ message: error.message });
