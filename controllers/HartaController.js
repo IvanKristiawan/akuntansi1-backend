@@ -32,17 +32,28 @@ export const getHartaLast = async (req, res) => {
 
 export const getHartaLancarAll = async (req, res) => {
   try {
-    let tempHarta = [];
     const harta = await Harta.find({}).sort({ createdAt: -1 }).limit(1);
     const hartaLancar = harta[0].hartaLancar;
-    hartaLancar.map((val) => {
+    res.json(hartaLancar);
+  } catch (error) {
+    // Error 500 = Kesalahan di server
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getHartaLancarAllForDoc = async (req, res) => {
+  try {
+    let tempHarta = []
+    const harta = await Harta.find({}).sort({ createdAt: -1 }).limit(1);
+    const hartaLancar = harta[0].hartaLancar;
+    hartaLancar.map(val => {
       tempHarta.push({
         kodeAccount: val.kodeAccount,
         namaAccount: val.namaAccount,
         kelompokAccount: val.kelompokAccount,
         total: val.total.toLocaleString(),
-      });
-    });
+      })
+    })
     res.json(tempHarta);
   } catch (error) {
     // Error 500 = Kesalahan di server
@@ -84,17 +95,28 @@ export const getHartaLancarOther = async (req, res) => {
 
 export const getHartaTetapAll = async (req, res) => {
   try {
-    let tempHarta = [];
     const harta = await Harta.find({}).sort({ createdAt: -1 }).limit(1);
     const hartaTetap = harta[0].hartaTetap;
-    hartaTetap.map((val) => {
+    res.json(hartaTetap);
+  } catch (error) {
+    // Error 500 = Kesalahan di server
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getHartaTetapAllForDoc = async (req, res) => {
+  try {
+    let tempHarta = []
+    const harta = await Harta.find({}).sort({ createdAt: -1 }).limit(1);
+    const hartaTetap = harta[0].hartaTetap;
+    hartaTetap.map(val => {
       tempHarta.push({
         kodeAccount: val.kodeAccount,
         namaAccount: val.namaAccount,
         kelompokAccount: val.kelompokAccount,
         total: val.total.toLocaleString(),
-      });
-    });
+      })
+    })
     res.json(tempHarta);
   } catch (error) {
     // Error 500 = Kesalahan di server

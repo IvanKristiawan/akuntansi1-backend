@@ -3,6 +3,7 @@ import {
     getKewajibans,
     getKewajibanLast,
     getKewajibanAll,
+    getKewajibanAllForDoc,
     getKewajiban,
     getKewajibanOther,
     saveKewajiban,
@@ -15,6 +16,7 @@ const router = express.Router();
 router.get("/kewajibans", getKewajibans);
 router.get("/kewajibanLast", getKewajibanLast);
 router.get("/kewajibanAll", getKewajibanAll);
+router.get("/kewajibanAllForDoc", getKewajibanAllForDoc);
 router.get("/kewajiban/:id", getKewajiban);
 router.get("/kewajibanOther/:id", getKewajibanOther);
 router.post("/kewajibans", saveKewajiban);

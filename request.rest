@@ -344,13 +344,19 @@ GET http://localhost:5000/hartaLast
 GET http://localhost:5000/hartaLancarAll
 
 ###
-GET http://localhost:5000/hartaLancar/10401
+GET http://localhost:5000/hartaLancarAllForDoc
 
 ###
-GET http://localhost:5000/hartaLancarOther/10101
+GET http://localhost:5000/hartaLancar/10301
+
+###
+GET http://localhost:5000/hartaLancarOther/10301
 
 ###
 GET http://localhost:5000/hartaTetapAll
+
+###
+GET http://localhost:5000/hartaTetapAllForDoc
 
 ###
 GET http://localhost:5000/hartaTetap/101011
@@ -433,6 +439,9 @@ GET http://localhost:5000/kewajibanLast
 
 ###
 GET http://localhost:5000/kewajibanAll
+
+###
+GET http://localhost:5000/kewajibanAllForDoc
 
 ###
 GET http://localhost:5000/kewajiban/20101
