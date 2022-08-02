@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/kelompokBukuBesars/62dbc47d46b14f308bb03a3e
+DELETE http://localhost:5000/kelompokBukuBesars/62e90285346634cf5c7d926c
 
 ### BukuBesar
 GET http://localhost:5000/bukuBesars
@@ -63,7 +63,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/bukuBesars/62dbc7e1688587cb053f4665
+DELETE http://localhost:5000/bukuBesars/62e911f8fa7d5698e721a218
 
 ### Jurnal Umums
 GET http://localhost:5000/jurnalUmums
@@ -512,3 +512,39 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/neracas/62e71bdde259526c8526b991
+
+### Register
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username":"Ivan 2",
+    "email":"ivanteens2@gmail.com",
+    "password": "ivan2"
+}
+
+### Login
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "Ivan Admin",
+    "password": "ivanadmin"
+}
+
+### User
+GET http://localhost:5000/users/62e8fac6ff3a65cefd883bb3
+
+### 
+GET http://localhost:5000/users
+
+###
+PUT http://localhost:5000/users/62e8fac6ff3a65cefd883bb3
+Content-Type: application/json
+
+{
+    "username": "Ivan Kristiawan"
+}
+
+###
+DELETE http://localhost:5000/users/62e8fc9c1b91b76d1ca2a56a

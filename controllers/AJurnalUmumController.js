@@ -1,4 +1,5 @@
 import AJurnalUmum from "../models/AJurnalUmumModel.js";
+import { createError } from "../utils/error.js";
 
 export const getAJurnalUmums = async (req, res) => {
   try {
@@ -34,7 +35,7 @@ export const getAJurnalUmumForDoc = async (req, res) => {
 
 export const getAJurnalUmumByNoNota = async (req, res) => {
   try {
-    let tempAJurnalUmum = []
+    let tempAJurnalUmum = [];
     const aJurnalUmum = await AJurnalUmum.find(
       { noJurnalUmum: req.params.id },
       {
@@ -46,15 +47,15 @@ export const getAJurnalUmumByNoNota = async (req, res) => {
         _id: 0,
       }
     );
-    aJurnalUmum.map(val => {
+    aJurnalUmum.map((val) => {
       tempAJurnalUmum.push({
         kodeAccount: val.kodeAccount,
         namaAccount: val.namaAccount,
         keterangan: val.keterangan,
         debet: val.debet.toLocaleString(),
         kredit: val.kredit.toLocaleString(),
-      })
-    })
+      });
+    });
     res.json(tempAJurnalUmum);
   } catch (error) {
     // Error 404 = Not Found
@@ -72,42 +73,54 @@ export const getAJurnalUmumById = async (req, res) => {
   }
 };
 
-export const saveAJurnalUmum = async (req, res) => {
+export const saveAJurnalUmum = async (req, res, next) => {
   const aJurnalUmum = new AJurnalUmum(req.body);
   try {
-    const insertedAJurnalUmum = await aJurnalUmum.save();
-    // Status 201 = Created
-    res.status(201).json(insertedAJurnalUmum);
+    if (req.user.isAdmin) {
+      const insertedAJurnalUmum = await aJurnalUmum.save();
+      // Status 201 = Created
+      res.status(201).json(insertedAJurnalUmum);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateAJurnalUmum = async (req, res) => {
+export const updateAJurnalUmum = async (req, res, next) => {
   try {
-    const updatedAJurnalUmum = await AJurnalUmum.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    // Status 200 = Successful
-    res.status(200).json(updatedAJurnalUmum);
+    if (req.user.isAdmin) {
+      const updatedAJurnalUmum = await AJurnalUmum.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      // Status 200 = Successful
+      res.status(200).json(updatedAJurnalUmum);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteAJurnalUmum = async (req, res) => {
+export const deleteAJurnalUmum = async (req, res, next) => {
   try {
-    const deletedAJurnalUmum = await AJurnalUmum.deleteOne({
-      _id: req.params.id,
-    });
-    // Status 200 = Successful
-    res.status(200).json(deletedAJurnalUmum);
+    if (req.user.isAdmin) {
+      const deletedAJurnalUmum = await AJurnalUmum.deleteOne({
+        _id: req.params.id,
+      });
+      // Status 200 = Successful
+      res.status(200).json(deletedAJurnalUmum);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

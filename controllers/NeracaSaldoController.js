@@ -1,4 +1,5 @@
 import NeracaSaldo from "../models/NeracaSaldoModel.js";
+import { createError } from "../utils/error.js";
 
 export const getNeracaSaldos = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ export const getNeracaSaldos = async (req, res) => {
 
 export const getNeracaSaldoForDoc = async (req, res) => {
   try {
-    let tempNeracaSaldo = []
+    let tempNeracaSaldo = [];
     const neracaSaldo = await NeracaSaldo.find(
       {},
       {
@@ -23,14 +24,14 @@ export const getNeracaSaldoForDoc = async (req, res) => {
         _id: 0,
       }
     );
-    neracaSaldo.map(val => {
+    neracaSaldo.map((val) => {
       tempNeracaSaldo.push({
         kodeAccount: val.kodeAccount,
         namaAccount: val.namaAccount,
         debet: val.debet.toLocaleString(),
         kredit: val.kredit.toLocaleString(),
-      })
-    })
+      });
+    });
     res.json(tempNeracaSaldo);
   } catch (error) {
     // Error 500 = Kesalahan di server
@@ -60,42 +61,54 @@ export const getNeracaSaldoById = async (req, res) => {
   }
 };
 
-export const saveNeracaSaldo = async (req, res) => {
+export const saveNeracaSaldo = async (req, res, next) => {
   const neracaSaldo = new NeracaSaldo(req.body);
   try {
-    const insertedNeracaSaldo = await neracaSaldo.save();
-    // Status 201 = Created
-    res.status(201).json(insertedNeracaSaldo);
+    if (req.user.isAdmin) {
+      const insertedNeracaSaldo = await neracaSaldo.save();
+      // Status 201 = Created
+      res.status(201).json(insertedNeracaSaldo);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateNeracaSaldo = async (req, res) => {
+export const updateNeracaSaldo = async (req, res, next) => {
   try {
-    const updatedNeracaSaldo = await NeracaSaldo.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    // Status 200 = Successful
-    res.status(200).json(updatedNeracaSaldo);
+    if (req.user.isAdmin) {
+      const updatedNeracaSaldo = await NeracaSaldo.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      // Status 200 = Successful
+      res.status(200).json(updatedNeracaSaldo);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteNeracaSaldo = async (req, res) => {
+export const deleteNeracaSaldo = async (req, res, next) => {
   try {
-    const deletedNeracaSaldo = await NeracaSaldo.deleteOne({
-      _id: req.params.id,
-    });
-    // Status 200 = Successful
-    res.status(200).json(deletedNeracaSaldo);
+    if (req.user.isAdmin) {
+      const deletedNeracaSaldo = await NeracaSaldo.deleteOne({
+        _id: req.params.id,
+      });
+      // Status 200 = Successful
+      res.status(200).json(deletedNeracaSaldo);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

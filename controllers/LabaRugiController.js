@@ -1,4 +1,5 @@
 import LabaRugi from "../models/LabaRugiModel.js";
+import { createError } from "../utils/error.js";
 
 export const getLabaRugis = async (req, res) => {
   try {
@@ -22,7 +23,7 @@ export const getLabaRugiLast = async (req, res) => {
 
 export const getLabaRugiTotal = async (req, res) => {
   try {
-    let tempLabaRugi = []
+    let tempLabaRugi = [];
     const labaRugi = await LabaRugi.find(
       {},
       {
@@ -36,15 +37,15 @@ export const getLabaRugiTotal = async (req, res) => {
     )
       .sort({ createdAt: -1 })
       .limit(1);
-    labaRugi.map(val => {
+    labaRugi.map((val) => {
       tempLabaRugi.push({
         totalPendapatan: val.totalPendapatan.toLocaleString(),
         totalHPP: val.totalHPP.toLocaleString(),
         totalBebanOperasional: val.totalBebanOperasional.toLocaleString(),
         labaKotor: val.labaKotor.toLocaleString(),
         labaBersih: val.labaBersih.toLocaleString(),
-      })
-    })
+      });
+    });
     res.json(tempLabaRugi);
   } catch (error) {
     // Error 500 = Kesalahan di server
@@ -54,18 +55,18 @@ export const getLabaRugiTotal = async (req, res) => {
 
 export const getLabaRugiTransaksiAll = async (req, res) => {
   try {
-    let tempTransaksi = []
+    let tempTransaksi = [];
     const labaRugi = await LabaRugi.find({}).sort({ createdAt: -1 }).limit(1);
     const transaksi = labaRugi[0].transaksi;
-    transaksi.map(val => {
+    transaksi.map((val) => {
       tempTransaksi.push({
         idNeracaSaldo: val.idNeracaSaldo,
         kodeAccount: val.kodeAccount,
         namaAccount: val.namaAccount,
         kelompokAccount: val.kelompokAccount,
         total: val.total.toLocaleString(),
-      })
-    })
+      });
+    });
     res.json(tempTransaksi);
   } catch (error) {
     // Error 500 = Kesalahan di server
@@ -134,42 +135,54 @@ export const getLabaRugiById = async (req, res) => {
   }
 };
 
-export const saveLabaRugi = async (req, res) => {
+export const saveLabaRugi = async (req, res, next) => {
   const labaRugi = new LabaRugi(req.body);
   try {
-    const insertedLabaRugi = await labaRugi.save();
-    // Status 201 = Created
-    res.status(201).json(insertedLabaRugi);
+    if (req.user.isAdmin) {
+      const insertedLabaRugi = await labaRugi.save();
+      // Status 201 = Created
+      res.status(201).json(insertedLabaRugi);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateLabaRugi = async (req, res) => {
+export const updateLabaRugi = async (req, res, next) => {
   try {
-    const updatedLabaRugi = await LabaRugi.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    // Status 200 = Successful
-    res.status(200).json(updatedLabaRugi);
+    if (req.user.isAdmin) {
+      const updatedLabaRugi = await LabaRugi.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      // Status 200 = Successful
+      res.status(200).json(updatedLabaRugi);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteLabaRugi = async (req, res) => {
+export const deleteLabaRugi = async (req, res, next) => {
   try {
-    const deletedLabaRugi = await LabaRugi.deleteOne({
-      _id: req.params.id,
-    });
-    // Status 200 = Successful
-    res.status(200).json(deletedLabaRugi);
+    if (req.user.isAdmin) {
+      const deletedLabaRugi = await LabaRugi.deleteOne({
+        _id: req.params.id,
+      });
+      // Status 200 = Successful
+      res.status(200).json(deletedLabaRugi);
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
