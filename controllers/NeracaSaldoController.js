@@ -1,5 +1,4 @@
 import NeracaSaldo from "../models/NeracaSaldoModel.js";
-import { createError } from "../utils/error.js";
 
 export const getNeracaSaldos = async (req, res) => {
   try {
@@ -61,54 +60,42 @@ export const getNeracaSaldoById = async (req, res) => {
   }
 };
 
-export const saveNeracaSaldo = async (req, res, next) => {
+export const saveNeracaSaldo = async (req, res) => {
   const neracaSaldo = new NeracaSaldo(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedNeracaSaldo = await neracaSaldo.save();
-      // Status 201 = Created
-      res.status(201).json(insertedNeracaSaldo);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedNeracaSaldo = await neracaSaldo.save();
+    // Status 201 = Created
+    res.status(201).json(insertedNeracaSaldo);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateNeracaSaldo = async (req, res, next) => {
+export const updateNeracaSaldo = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const updatedNeracaSaldo = await NeracaSaldo.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // Status 200 = Successful
-      res.status(200).json(updatedNeracaSaldo);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const updatedNeracaSaldo = await NeracaSaldo.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // Status 200 = Successful
+    res.status(200).json(updatedNeracaSaldo);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteNeracaSaldo = async (req, res, next) => {
+export const deleteNeracaSaldo = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedNeracaSaldo = await NeracaSaldo.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedNeracaSaldo);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedNeracaSaldo = await NeracaSaldo.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedNeracaSaldo);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

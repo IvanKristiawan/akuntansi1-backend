@@ -91,7 +91,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/jurnalUmums/62de3cade8487377d8839217
+DELETE http://localhost:5000/jurnalUmums/62e9f9ada33d19a3ada45e82
 
 ### A Jurnal Umums
 GET http://localhost:5000/aJurnalUmums/0002
@@ -547,4 +547,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/users/62e8fc9c1b91b76d1ca2a56a
+DELETE http://localhost:5000/users/62ea5243f9e61d1e94215251

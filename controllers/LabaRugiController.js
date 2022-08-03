@@ -1,5 +1,4 @@
 import LabaRugi from "../models/LabaRugiModel.js";
-import { createError } from "../utils/error.js";
 
 export const getLabaRugis = async (req, res) => {
   try {
@@ -135,54 +134,42 @@ export const getLabaRugiById = async (req, res) => {
   }
 };
 
-export const saveLabaRugi = async (req, res, next) => {
+export const saveLabaRugi = async (req, res) => {
   const labaRugi = new LabaRugi(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedLabaRugi = await labaRugi.save();
-      // Status 201 = Created
-      res.status(201).json(insertedLabaRugi);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedLabaRugi = await labaRugi.save();
+    // Status 201 = Created
+    res.status(201).json(insertedLabaRugi);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateLabaRugi = async (req, res, next) => {
+export const updateLabaRugi = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const updatedLabaRugi = await LabaRugi.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // Status 200 = Successful
-      res.status(200).json(updatedLabaRugi);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const updatedLabaRugi = await LabaRugi.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // Status 200 = Successful
+    res.status(200).json(updatedLabaRugi);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteLabaRugi = async (req, res, next) => {
+export const deleteLabaRugi = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedLabaRugi = await LabaRugi.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedLabaRugi);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedLabaRugi = await LabaRugi.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedLabaRugi);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

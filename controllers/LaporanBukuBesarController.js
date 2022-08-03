@@ -1,5 +1,4 @@
 import LaporanBukuBesar from "../models/LaporanBukuBesarModel.js";
-import { createError } from "../utils/error.js";
 
 export const getLaporanBukuBesars = async (req, res) => {
   try {
@@ -47,33 +46,25 @@ export const getLaporanBukuBesarById = async (req, res) => {
   }
 };
 
-export const saveLaporanBukuBesar = async (req, res, next) => {
+export const saveLaporanBukuBesar = async (req, res) => {
   const laporanBukuBesar = new LaporanBukuBesar(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedLaporanBukuBesar = await laporanBukuBesar.save();
-      // Status 201 = Created
-      res.status(201).json(insertedLaporanBukuBesar);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedLaporanBukuBesar = await laporanBukuBesar.save();
+    // Status 201 = Created
+    res.status(201).json(insertedLaporanBukuBesar);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteLaporanBukuBesar = async (req, res, next) => {
+export const deleteLaporanBukuBesar = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedLaporanBukuBesar = await LaporanBukuBesar.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedLaporanBukuBesar);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedLaporanBukuBesar = await LaporanBukuBesar.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedLaporanBukuBesar);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

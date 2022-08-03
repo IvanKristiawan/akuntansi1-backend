@@ -1,5 +1,4 @@
 import AJurnalUmum from "../models/AJurnalUmumModel.js";
-import { createError } from "../utils/error.js";
 
 export const getAJurnalUmums = async (req, res) => {
   try {
@@ -73,54 +72,42 @@ export const getAJurnalUmumById = async (req, res) => {
   }
 };
 
-export const saveAJurnalUmum = async (req, res, next) => {
+export const saveAJurnalUmum = async (req, res) => {
   const aJurnalUmum = new AJurnalUmum(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedAJurnalUmum = await aJurnalUmum.save();
-      // Status 201 = Created
-      res.status(201).json(insertedAJurnalUmum);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedAJurnalUmum = await aJurnalUmum.save();
+    // Status 201 = Created
+    res.status(201).json(insertedAJurnalUmum);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateAJurnalUmum = async (req, res, next) => {
+export const updateAJurnalUmum = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const updatedAJurnalUmum = await AJurnalUmum.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // Status 200 = Successful
-      res.status(200).json(updatedAJurnalUmum);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const updatedAJurnalUmum = await AJurnalUmum.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // Status 200 = Successful
+    res.status(200).json(updatedAJurnalUmum);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteAJurnalUmum = async (req, res, next) => {
+export const deleteAJurnalUmum = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedAJurnalUmum = await AJurnalUmum.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedAJurnalUmum);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedAJurnalUmum = await AJurnalUmum.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedAJurnalUmum);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

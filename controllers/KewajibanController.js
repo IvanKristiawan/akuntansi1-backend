@@ -1,5 +1,4 @@
 import Kewajiban from "../models/KewajibanModel.js";
-import { createError } from "../utils/error.js";
 
 export const getKewajibans = async (req, res) => {
   try {
@@ -84,54 +83,42 @@ export const getKewajibanOther = async (req, res) => {
   }
 };
 
-export const saveKewajiban = async (req, res, next) => {
+export const saveKewajiban = async (req, res) => {
   const kewajiban = new Kewajiban(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedKewajiban = await kewajiban.save();
-      // Status 201 = Created
-      res.status(201).json(insertedKewajiban);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedKewajiban = await kewajiban.save();
+    // Status 201 = Created
+    res.status(201).json(insertedKewajiban);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateKewajiban = async (req, res, next) => {
+export const updateKewajiban = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const updatedKewajiban = await Kewajiban.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // Status 200 = Successful
-      res.status(200).json(updatedKewajiban);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const updatedKewajiban = await Kewajiban.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // Status 200 = Successful
+    res.status(200).json(updatedKewajiban);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteKewajiban = async (req, res, next) => {
+export const deleteKewajiban = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedKewajiban = await Kewajiban.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedKewajiban);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedKewajiban = await Kewajiban.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedKewajiban);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

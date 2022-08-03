@@ -1,5 +1,4 @@
 import PerubahanModal from "../models/PerubahanModalModel.js";
-import { createError } from "../utils/error.js";
 
 export const getPerubahanModals = async (req, res) => {
   try {
@@ -49,54 +48,42 @@ export const getPerubahanModalLast = async (req, res) => {
   }
 };
 
-export const savePerubahanModal = async (req, res, next) => {
+export const savePerubahanModal = async (req, res) => {
   const perubahanModal = new PerubahanModal(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedPerubahanModal = await perubahanModal.save();
-      // Status 201 = Created
-      res.status(201).json(insertedPerubahanModal);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedPerubahanModal = await perubahanModal.save();
+    // Status 201 = Created
+    res.status(201).json(insertedPerubahanModal);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updatePerubahanModal = async (req, res, next) => {
+export const updatePerubahanModal = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const updatedPerubahanModal = await PerubahanModal.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // Status 200 = Successful
-      res.status(200).json(updatedPerubahanModal);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const updatedPerubahanModal = await PerubahanModal.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // Status 200 = Successful
+    res.status(200).json(updatedPerubahanModal);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deletePerubahanModal = async (req, res, next) => {
+export const deletePerubahanModal = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedPerubahanModal = await PerubahanModal.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedPerubahanModal);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedPerubahanModal = await PerubahanModal.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedPerubahanModal);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

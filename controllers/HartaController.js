@@ -1,5 +1,4 @@
 import Harta from "../models/HartaModel.js";
-import { createError } from "../utils/error.js";
 
 export const getHartas = async (req, res) => {
   try {
@@ -157,54 +156,42 @@ export const getHartaTetapOther = async (req, res) => {
   }
 };
 
-export const saveHarta = async (req, res, next) => {
+export const saveHarta = async (req, res) => {
   const harta = new Harta(req.body);
   try {
-    if (req.user.isAdmin) {
-      const insertedHarta = await harta.save();
-      // Status 201 = Created
-      res.status(201).json(insertedHarta);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const insertedHarta = await harta.save();
+    // Status 201 = Created
+    res.status(201).json(insertedHarta);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateHarta = async (req, res, next) => {
+export const updateHarta = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const updatedHarta = await Harta.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      // Status 200 = Successful
-      res.status(200).json(updatedHarta);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const updatedHarta = await Harta.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // Status 200 = Successful
+    res.status(200).json(updatedHarta);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteHarta = async (req, res, next) => {
+export const deleteHarta = async (req, res) => {
   try {
-    if (req.user.isAdmin) {
-      const deletedHarta = await Harta.deleteOne({
-        _id: req.params.id,
-      });
-      // Status 200 = Successful
-      res.status(200).json(deletedHarta);
-    } else {
-      return next(createError(403, "You are not authorized!"));
-    }
+    const deletedHarta = await Harta.deleteOne({
+      _id: req.params.id,
+    });
+    // Status 200 = Successful
+    res.status(200).json(deletedHarta);
   } catch (error) {
     // Error 400 = Kesalahan dari sisi user
     res.status(400).json({ message: error.message });

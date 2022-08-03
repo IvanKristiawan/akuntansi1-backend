@@ -12,7 +12,6 @@ import {
     updateLabaRugi,
     deleteLabaRugi
 } from "../controllers/LabaRugiController.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -24,8 +23,8 @@ router.get("/labaRugiTransaksiAll", getLabaRugiTransaksiAll);
 router.get("/labaRugiTransaksiAllForDoc", getLabaRugiTransaksiAllForDoc);
 router.get("/labaRugiTransaksi/:id", getLabaRugiTransaksi);
 router.get("/labaRugiTransaksiOther/:id", getLabaRugiTransaksiOther);
-router.post("/labaRugis", verifyAdmin, saveLabaRugi);
-router.patch("/labaRugis/:id", verifyAdmin, updateLabaRugi);
-router.delete("/labaRugis/:id", verifyAdmin, deleteLabaRugi);
+router.post("/labaRugis", saveLabaRugi);
+router.patch("/labaRugis/:id", updateLabaRugi);
+router.delete("/labaRugis/:id", deleteLabaRugi);
 
 export default router;

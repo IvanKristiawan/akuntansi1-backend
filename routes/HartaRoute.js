@@ -15,7 +15,6 @@ import {
     updateHarta,
     deleteHarta
 } from "../controllers/HartaController.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -30,8 +29,8 @@ router.get("/hartaTetapAll", getHartaTetapAll);
 router.get("/hartaTetapAllForDoc", getHartaTetapAllForDoc);
 router.get("/hartaTetap/:id", getHartaTetap);
 router.get("/hartaTetapOther/:id", getHartaTetapOther);
-router.post("/hartas", verifyAdmin, saveHarta);
-router.patch("/hartas/:id", verifyAdmin, updateHarta);
-router.delete("/hartas/:id", verifyAdmin, deleteHarta);
+router.post("/hartas", saveHarta);
+router.patch("/hartas/:id", updateHarta);
+router.delete("/hartas/:id", deleteHarta);
 
 export default router;
