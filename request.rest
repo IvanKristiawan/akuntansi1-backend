@@ -518,9 +518,9 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-    "username":"Ivan 2",
-    "email":"ivanteens2@gmail.com",
-    "password": "ivan2"
+    "username":"Ivan Kristiawan",
+    "email":"ivanteens@gmail.com",
+    "password": "ivanteens"
 }
 
 ### Login
@@ -533,18 +533,20 @@ Content-Type: application/json
 }
 
 ### User
-GET http://localhost:5000/users/62e8fac6ff3a65cefd883bb3
+GET http://localhost:5000/users/62e906b208f0aee922bc7e59
 
 ### 
 GET http://localhost:5000/users
 
 ###
-PUT http://localhost:5000/users/62e8fac6ff3a65cefd883bb3
+PUT http://localhost:5000/users/62eb3008bd9265a376a1528f
 Content-Type: application/json
 
 {
-    "username": "Ivan Kristiawan"
+    "username": "Ivan Kristiawan",
+    "password": "ivanteens",
+    "isAdmin": false
 }
 
 ###
-DELETE http://localhost:5000/users/62ea5243f9e61d1e94215251
+DELETE http://localhost:5000/users/62e906d808f0aee922bc7e5d

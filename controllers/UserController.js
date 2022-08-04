@@ -1,11 +1,24 @@
 import User from "../models/UserModel.js";
+import bcrypt from "bcryptjs";
 
 export const updateUser = async (req, res, next) => {
   try {
+    const findUser = await User.findById(req.params.id)
+    const salt = bcrypt.genSaltSync(10);
+    let hash
+    if(req.body.password) {
+      hash = bcrypt.hashSync(req.body.password, salt);
+    } else {
+      hash = findUser.password
+    }
+
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       {
-        $set: req.body,
+        username: req.body.username,
+        email: req.body.email,
+        isAdmin: req.body.isAdmin,
+        password: hash,
       },
       { new: true }
     );
